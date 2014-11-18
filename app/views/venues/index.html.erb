@@ -18,10 +18,13 @@
 
   <tbody>
     <% @venues.each do |venue| %>
+
       <tr>
         <td><%= venue.name %></td>
         <td><%= venue.address %></td>
-        <td><%= venue.neighborhood_id %></td>
+
+        <!-- Can we do this by placing a global variable inside the .each function? -->
+        <td><%= Neighborhood.find_by({:id => venue.neighborhood_id}).name %></td>
         <td>
           <a href="/venues/<%= venue.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>

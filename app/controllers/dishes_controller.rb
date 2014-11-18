@@ -5,6 +5,11 @@ class DishesController < ApplicationController
 
   def show
     @dish = Dish.find(params[:id])
+    @name_of_cuisine = Cuisine.find_by({:id => @dish.cuisine_id})
+    #Question: Why can't I use :cuisine_id instead of :id like we did in the DB example
+
+    #@movie = Movie.find(params[:id])
+    #@movie_roles = Role.where({ :movie_id => @movie.id})
   end
 
   def new_form

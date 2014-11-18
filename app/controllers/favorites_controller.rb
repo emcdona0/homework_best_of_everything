@@ -5,6 +5,9 @@ class FavoritesController < ApplicationController
 
   def show
     @favorite = Favorite.find(params[:id])
+    @favorite_venue = Venue.find_by({:id => @favorite.venue_id})
+    @favorite_dish = Dish.find_by({:id => @favorite.dish_id})
+    @favorite_user = User.find_by({:id => @favorite.user_id})
   end
 
   def new

@@ -9,4 +9,30 @@
   <dt>City</dt>
   <dd><%= @neighborhood.city %></dd>
 
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+    </tr>
+  </thead>
+
+<h2>Venues</h2>
+
+<% Venue.where({ :neighborhood_id => @neighborhood.id}).each do |venue| %>
+<!-- Need to think about this a bit more. -->
+<tr>
+<th>
+<%= venue.name %>
+</th>
+<th>
+<%= venue.address %>
+</th>
+</tr>
+<% end %>
+</table>
+
+
 </dl>

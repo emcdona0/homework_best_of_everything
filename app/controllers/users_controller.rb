@@ -1,10 +1,15 @@
 class UsersController < ApplicationController
   def index
     @users = User.all
+    @favorites = Favorite.all
   end
 
   def show
     @user = User.find(params[:id])
+    @favorite = Favorite.find(params[:id])
+    @favorite_venue = Venue.where({:id => @favorite.venue_id})
+    @favorite_dish = Dish.where({:id => @favorite.dish_id})
+    @favorite_user = User.where({:id => @favorite.user_id})
   end
 
   def new

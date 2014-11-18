@@ -1,9 +1,30 @@
 <div class="page-header">
-  <h1>User #<%= @user.id %></h1>
+  <h1>User #<%= @user.id %> <%= @user.username.capitalize %></h1>
 </div>
 
 <dl class="dl-horizontal">
-  <dt>Username</dt>
-  <dd><%= @user.username %></dd>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Dish</th>
+      <th>Venue</th>
+    </tr>
+  </thead>
+
+<h2>Favorites</h2>
+
+<% Favorite.where({ :user_id => @user.id}).each do |favorite| %>
+<tr>
+<th>
+<%= Dish.find_by({ :id => favorite.dish_id}).name %>
+</th>
+<th>
+<%= Venue.find_by({ :id => favorite.venue_id}).name %>
+</th>
+</tr>
+<% end %>
+</table>
+
 
 </dl>

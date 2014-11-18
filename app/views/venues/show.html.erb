@@ -6,8 +6,8 @@
   <dt>Name</dt>
   <dd><%= @venue.name %></dd>
 
-  <dt>Neighborhood ID</dt>
-  <dd><%= @venue.neighborhood_id %></dd>
+  <dt>Neighborhood</dt>
+  <dd><%= @neighborhood_of_venue.name %></dd>
 
   <dt>Address</dt>
   <dd><%= @venue.address %></dd>
@@ -48,6 +48,30 @@
     </script>
     <div id="map-canvas"></div>
   </dd>
+
+ <h2>Favorites</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Dish</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+<% Favorite.where({ :venue_id => @venue.id}).each do |favorite| %>
+<tr>
+<th>
+<%= Dish.find_by({ :id => favorite.dish_id}).name.capitalize %>
+</th>
+<th>
+<%= User.find_by({ :id => favorite.user_id}).username %>
+</th>
+</tr>
+<% end %>
+</table>
+
+
 </dl>
 
 

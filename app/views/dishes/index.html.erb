@@ -7,8 +7,8 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Cuisine ID</th>
+      <th>Dish</th>
+      <th>Cuisine</th>
       <th></th>
       <th></th>
       <th></th>
@@ -19,7 +19,8 @@
     <% @dishes.each do |dish| %>
       <tr>
         <td><%= dish.name %></td>
-        <td><%= dish.cuisine_id %></td>
+        <td><%= Cuisine.find_by({:id => dish.cuisine_id}).name %></td>
+        <!-- Why can't @ be used here? -->
         <td>
           <a href="/dishes/<%= dish.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>

@@ -8,6 +8,8 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
+    @neighborhood_of_venue = Neighborhood.find_by({:id => @venue.neighborhood_id})
+
 
     url_safe_address = URI.encode(@venue.address)
     url_of_data = "http://maps.googleapis.com/maps/api/geocode/json?address=#{url_safe_address}"
